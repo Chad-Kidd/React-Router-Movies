@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+
 
 import SavedList from './Movies/SavedList';
 import MovieList from './Movies/MovieList';
@@ -22,7 +24,20 @@ export default class App extends Component {
     return (
       <div>
         <SavedList list={this.state.savedList} />
-        <div>Replace this Div with your Routes</div>
+        <div> 
+          <Route component={MovieList} />
+
+        <Route
+          path="/movies/:id"
+          render={props => (
+            <Movie
+            addToSavedList={this.addToSavedList}
+              // history={props.history}
+              // match={props.match}
+              // location={props.location}
+              // use the spread operator!
+              {...props}/>)}/>
+        </div>
       </div>
     );
   }
